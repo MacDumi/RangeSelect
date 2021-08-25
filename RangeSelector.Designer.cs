@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.panelLabels = new System.Windows.Forms.Panel();
+            this.labelDescription = new System.Windows.Forms.Label();
             this.labelMax = new System.Windows.Forms.Label();
             this.labelMin = new System.Windows.Forms.Label();
             this.panelBG = new System.Windows.Forms.Panel();
-            this.labelDescription = new System.Windows.Forms.Label();
             this.panelLabels.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,6 +47,16 @@
             this.panelLabels.Name = "panelLabels";
             this.panelLabels.Size = new System.Drawing.Size(376, 17);
             this.panelLabels.TabIndex = 2;
+            // 
+            // labelDescription
+            // 
+            this.labelDescription.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.labelDescription.AutoSize = true;
+            this.labelDescription.Location = new System.Drawing.Point(168, 1);
+            this.labelDescription.Name = "labelDescription";
+            this.labelDescription.Size = new System.Drawing.Size(35, 13);
+            this.labelDescription.TabIndex = 3;
+            this.labelDescription.Text = "label1";
             // 
             // labelMax
             // 
@@ -78,17 +88,6 @@
             this.panelBG.Name = "panelBG";
             this.panelBG.Size = new System.Drawing.Size(376, 188);
             this.panelBG.TabIndex = 3;
-            // 
-            // labelDescription
-            // 
-            this.labelDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelDescription.AutoSize = true;
-            this.labelDescription.Location = new System.Drawing.Point(168, 1);
-            this.labelDescription.Name = "labelDescription";
-            this.labelDescription.Size = new System.Drawing.Size(35, 13);
-            this.labelDescription.TabIndex = 3;
-            this.labelDescription.Text = "label1";
             // 
             // SelectionRangeSlider
             // 
