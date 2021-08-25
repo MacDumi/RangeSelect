@@ -57,5 +57,14 @@
       <DependentUpon>RangeSelector.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Screenshots\example_0.PNG" />
+    <Content Include="Screenshots\example_1.PNG" />
+    <Content Include="Screenshots\example_3.PNG" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

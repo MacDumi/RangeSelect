@@ -29,7 +29,7 @@ namespace RangeSelect
         /// <summary>
         /// Minimum value of the slider.
         /// </summary>
-        [Description("Minimum value of the slider.")]
+        [Description("Minimum value of the range selector.")]
         public int Min
         {
             get { return min; }
@@ -40,7 +40,7 @@ namespace RangeSelect
         /// <summary>
         /// Maximum value of the slider.
         /// </summary>
-        [Description("Maximum value of the slider.")]
+        [Description("Maximum value of the range selector.")]
         public int Max
         {
             get { return max; }
@@ -107,7 +107,7 @@ namespace RangeSelect
         /// <summary>
         /// Fired when the selected range changes.
         /// </summary>
-        [Description("Fired when the selceted range changes.")]
+        [Description("Fired when the selected range changes.")]
         public event EventHandler SelectionChanged;
 
         #endregion
