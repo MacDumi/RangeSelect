@@ -9,6 +9,13 @@ namespace RangeSelect
     public partial class SelectionRangeSlider : UserControl
     {
         /// <summary>
+        /// Enumeration for the slider edge
+        /// </summary>
+        enum MovingMode { MovingMin, MovingMax }
+        MovingMode movingMode;
+
+        #region Properties
+        /// <summary>
         /// Background Image.
         /// </summary>
         [Description("Background image of the range selector.")]
@@ -18,6 +25,7 @@ namespace RangeSelect
             set { image = value; Invalidate(); }
         }
         Image image = null;
+
         /// <summary>
         /// Minimum value of the slider.
         /// </summary>
@@ -28,6 +36,7 @@ namespace RangeSelect
             set { min = value; Invalidate(); }
         }
         int min = 0;
+
         /// <summary>
         /// Maximum value of the slider.
         /// </summary>
@@ -38,6 +47,7 @@ namespace RangeSelect
             set { max = value; Invalidate(); }
         }
         int max = 100;
+
         /// <summary>
         /// Minimum value of the selection range.
         /// </summary>
@@ -54,6 +64,7 @@ namespace RangeSelect
             }
         }
         int selectedMin = 0;
+
         /// <summary>
         /// Maximum value of the selection range.
         /// </summary>
@@ -70,6 +81,7 @@ namespace RangeSelect
             }
         }
         int selectedMax = 100;
+
         /// <summary>
         /// Color of the background.
         /// </summary>
@@ -80,6 +92,7 @@ namespace RangeSelect
             set { bgBrush.Color = value; Invalidate(); }
         }
         SolidBrush bgBrush = new SolidBrush(Color.White);
+
         /// <summary>
         /// Color of the selected range.
         /// </summary>
@@ -89,13 +102,16 @@ namespace RangeSelect
             get { return brush.Color; }
             set { brush.Color = value; Invalidate(); }
         }
-        SolidBrush brush = new SolidBrush(Color.FromArgb(255, Color.Green));
+        SolidBrush brush = new SolidBrush(Color.FromArgb(255, Color.Red));
+
         /// <summary>
         /// Fired when the selected range changes.
         /// </summary>
         [Description("Fired when the selceted range changes.")]
         public event EventHandler SelectionChanged;
-  
+
+        #endregion
+
 
         public SelectionRangeSlider()
         {
@@ -113,6 +129,8 @@ namespace RangeSelect
             labelMax.Text = max.ToString();
         }
 
+        #region Events
+        // Paint event
         void SelectionRangeSlider_Paint(object sender, PaintEventArgs e)
         {
             var panel = sender as Panel;
@@ -137,9 +155,10 @@ namespace RangeSelect
             e.Graphics.FillRectangle(brush, selectionRect);           
         }
 
+        // Mouse down event
         void SelectionRangeSlider_MouseDown(object sender, MouseEventArgs e)
         {
-            //check where the user clicked so we can decide which thumb to move
+            //check where the user clicked so we can decide which side to move
             int pointedValue = Min + e.X * (Max - Min) / Width;
             int distMin = Math.Abs(pointedValue - SelectedMin);
             int distMax = Math.Abs(pointedValue - SelectedMax);
@@ -152,29 +171,38 @@ namespace RangeSelect
             SelectionRangeSlider_MouseMove(sender, e);
         }
 
+        // Mouse drag event
         void SelectionRangeSlider_MouseMove(object sender, MouseEventArgs e)
         {
-            //if the left button is pushed, move the selected thumb
+            //if the left mouse button was pushed, move the selected slider
             if (e.Button != MouseButtons.Left)
                 return;
             int pointedValue = Min + e.X * (Max - Min) / Width;
             if (movingMode == MovingMode.MovingMin)
             {
+                if (pointedValue >= SelectedMax)
+                {
+                    // we don't want a region of 0
+                    pointedValue = SelectedMax - 1;
+                    movingMode = MovingMode.MovingMax;
+                }
                 SelectedMin = pointedValue;
                 labelMin.Text = SelectedMin.ToString();
             }
             else if(movingMode == MovingMode.MovingMax)
             {
+                if (pointedValue <= SelectedMin)
+                {
+                    // we don't want a region of 0
+                    pointedValue = SelectedMin + 1;
+                    movingMode = MovingMode.MovingMin;
+                }
                 SelectedMax = pointedValue;
                 labelMax.Text = SelectedMax.ToString();
             }
 
         }
 
-        /// <summary>
-        /// Enumeration for the slider edge
-        /// </summary>
-        enum MovingMode {MovingMin, MovingMax }
-        MovingMode movingMode;
+        #endregion
     }
 }
