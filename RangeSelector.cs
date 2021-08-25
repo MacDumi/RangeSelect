@@ -62,6 +62,7 @@ namespace RangeSelect
                 selectedMin = value;
                 if (SelectionChanged != null)
                     SelectionChanged(this, null);
+                labelMin.Text = value.ToString();
                 Invalidate();
             }
         }
@@ -79,11 +80,27 @@ namespace RangeSelect
                 selectedMax = value;
                 if (SelectionChanged != null)
                     SelectionChanged(this, null);
+                labelMax.Text = value.ToString();
                 Invalidate();
             }
         }
         int selectedMax = 100;
 
+        /// <summary>
+        /// Label / Description of the range selector.
+        /// </summary>
+        [Description("Label / Description of the range selector.")]
+        public string Label
+        {
+            get { return label; }
+            set
+            {
+                label = value;
+                labelDescription.Text = value;
+                Invalidate();
+            }
+        }
+        string label = "";
         /// <summary>
         /// Color of the background.
         /// </summary>
@@ -129,6 +146,7 @@ namespace RangeSelect
             //change the text on labels
             labelMin.Text = min.ToString();
             labelMax.Text = max.ToString();
+            labelDescription.Text = label;
         }
 
         #region Events

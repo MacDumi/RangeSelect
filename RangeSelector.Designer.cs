@@ -32,12 +32,14 @@
             this.labelMax = new System.Windows.Forms.Label();
             this.labelMin = new System.Windows.Forms.Label();
             this.panelBG = new System.Windows.Forms.Panel();
+            this.labelDescription = new System.Windows.Forms.Label();
             this.panelLabels.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelLabels
             // 
             this.panelLabels.BackColor = System.Drawing.Color.White;
+            this.panelLabels.Controls.Add(this.labelDescription);
             this.panelLabels.Controls.Add(this.labelMax);
             this.panelLabels.Controls.Add(this.labelMin);
             this.panelLabels.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -77,6 +79,17 @@
             this.panelBG.Size = new System.Drawing.Size(376, 188);
             this.panelBG.TabIndex = 3;
             // 
+            // labelDescription
+            // 
+            this.labelDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelDescription.AutoSize = true;
+            this.labelDescription.Location = new System.Drawing.Point(168, 1);
+            this.labelDescription.Name = "labelDescription";
+            this.labelDescription.Size = new System.Drawing.Size(35, 13);
+            this.labelDescription.TabIndex = 3;
+            this.labelDescription.Text = "label1";
+            // 
             // SelectionRangeSlider
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -98,5 +111,6 @@
         private System.Windows.Forms.Panel panelBG;
         private System.Windows.Forms.Label labelMax;
         private System.Windows.Forms.Label labelMin;
+        private System.Windows.Forms.Label labelDescription;
     }
 }

@@ -17,6 +17,7 @@ Several properties of the control are exposed:
 | SelectionColor | Color of the selected region |
 | BackgroundColor | Background color (only used when no image was selected) |
 | Image | Background image |
+| Label | Description for the range selector |
 
 The control also offers an event **SelectionChanged** fired every time the selected range changes.
 
