@@ -197,7 +197,7 @@ namespace RangeSelect
                 movingMode = MovingMode.MovingMin;
             else
                 movingMode = MovingMode.MovingMax;
-            //call this to refreh the position of the selected thumb
+            //call this to refresh the position of the selected slider
             SelectionRangeSlider_MouseMove(sender, e);
         }
 
@@ -216,6 +216,7 @@ namespace RangeSelect
                     pointedValue = SelectedMax - 1;
                     movingMode = MovingMode.MovingMax;
                 }
+                if (pointedValue < min) pointedValue = min;
                 SelectedMin = pointedValue;
                 labelMin.Text = SelectedMin.ToString();
             }
@@ -227,6 +228,7 @@ namespace RangeSelect
                     pointedValue = SelectedMin + 1;
                     movingMode = MovingMode.MovingMin;
                 }
+                if (pointedValue > max) pointedValue = max;
                 SelectedMax = pointedValue;
                 labelMax.Text = SelectedMax.ToString();
             }
