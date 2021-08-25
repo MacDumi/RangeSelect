@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Reflection;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 
 namespace RangeSelect
 {
@@ -22,7 +24,7 @@ namespace RangeSelect
         public Image Image
         {
             get { return image; }
-            set { image = value; Invalidate(); }
+            set { image = value; Invalidate();}
         }
         Image image = null;
 
@@ -130,6 +132,31 @@ namespace RangeSelect
         }
 
         #region Events
+
+        public static Bitmap ResizeImage(Image image, int width, int height)
+        {
+            var destRect = new Rectangle(0, 0, width, height);
+            var destImage = new Bitmap(width, height);
+
+            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+
+            using (var graphics = Graphics.FromImage(destImage))
+            {
+                graphics.CompositingMode = CompositingMode.SourceCopy;
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                using (var wrapMode = new ImageAttributes())
+                {
+                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+                }
+            }
+
+            return destImage;
+        }
         // Paint event
         void SelectionRangeSlider_Paint(object sender, PaintEventArgs e)
         {
@@ -138,7 +165,15 @@ namespace RangeSelect
             if (image != null)
             {
                 //draw the image
-                e.Graphics.DrawImage(image, ClientRectangle);
+                Bitmap bm = new Bitmap(panel.Width, panel.Height);
+                using (Graphics gr = Graphics.FromImage(bm))
+                {
+                    gr.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    Rectangle dest_rect = new Rectangle(0, 0, panel.Width, panel.Height);
+                    Rectangle source_rect = new Rectangle(0, 0, image.Width, image.Height);
+                    e.Graphics.DrawImage(image, dest_rect, source_rect, GraphicsUnit.Pixel);
+                }
+
             }
             else
             {
