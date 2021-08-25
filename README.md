@@ -25,10 +25,10 @@ The control also offers an event **SelectionChanged** fired every time the selec
 Some examples
 
 Simple color-based range selector.
-<img src="Screenshots/example_0.PNG" width=300>
+<img src="/Screenshots/example_0.png">
 
 Control allowing the user to select a spectral range.
-<img src="Screenshots/example_1.PNG" width=300>
+<img src="/Screenshots/example_1.png">
 
 Selection of a mass range on a mass spectrum.
-<img src="Screenshots/example_2.PNG" width=300>
+<img src="/Screenshots/example_2.png">

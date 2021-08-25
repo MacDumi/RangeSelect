@@ -62,9 +62,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Screenshots\example_0.PNG" />
-    <Content Include="Screenshots\example_1.PNG" />
-    <Content Include="Screenshots\example_3.PNG" />
+    <Content Include="Screenshots\example_0.png" />
+    <Content Include="Screenshots\example_1.png" />
+    <Content Include="Screenshots\example_3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
