@@ -15,6 +15,7 @@ Several properties of the control are exposed:
 | SelectedMin | Minimum value of the selected range |
 | SelectedMax | Maximum value of the selected range |
 | SelectionColor | Color of the selected region |
+| Step | Step between values |
 | BackgroundColor | Background color (only used when no image was selected) |
 | Image | Background image |
 | Label | Description for the range selector |

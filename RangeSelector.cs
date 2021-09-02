@@ -85,7 +85,20 @@ namespace RangeSelect
             }
         }
         int selectedMax = 100;
-
+        /// <summary>
+        /// Step.
+        /// </summary>
+        [Description("Step.")]
+        public int Step
+        {
+            get { return step; }
+            set
+            {
+                step = value;
+                Invalidate();
+            }
+        }
+        int step = 5;
         /// <summary>
         /// Label / Description of the range selector.
         /// </summary>
@@ -149,6 +162,7 @@ namespace RangeSelect
             labelDescription.Text = label;
         }
 
+     
         #region Events
 
         // Paint event
@@ -208,6 +222,9 @@ namespace RangeSelect
             if (e.Button != MouseButtons.Left)
                 return;
             int pointedValue = Min + e.X * (Max - Min) / Width;
+            int dStep = pointedValue % step;
+            pointedValue = step * (pointedValue / step);
+            if (dStep > step / 2) pointedValue += step;
             if (movingMode == MovingMode.MovingMin)
             {
                 if (pointedValue >= SelectedMax)
